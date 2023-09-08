@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Alpaca.Portal.Web.Models.Notice>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NoticeTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoticeTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NoticeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NoticeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NoticeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

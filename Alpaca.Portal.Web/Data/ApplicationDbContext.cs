@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Alpaca.Portal.Web.Models;
 
 namespace Alpaca.Portal.Web.Data
 {
@@ -9,5 +10,6 @@ namespace Alpaca.Portal.Web.Data
             : base(options)
         {
         }
+        public DbSet<Alpaca.Portal.Web.Models.Notice> Notice { get; set; } = default!;
     }
 }

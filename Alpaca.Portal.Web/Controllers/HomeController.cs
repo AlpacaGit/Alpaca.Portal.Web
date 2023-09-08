@@ -31,6 +31,12 @@ namespace Alpaca.Portal.Web.Controllers
             _logger.LogInformation("User");
             return View();
         }
+        
+        public IActionResult Notices()
+        {
+            _logger.LogInformation("お知らせページ");
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
