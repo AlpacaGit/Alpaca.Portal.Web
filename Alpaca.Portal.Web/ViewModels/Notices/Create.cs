@@ -1,12 +1,10 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using Alpaca.Portal.Web.Models;
 
-namespace Alpaca.Portal.Web.Models
+namespace Alpaca.Portal.Web.ViewModels.Notices
 {
-    /// <summary>
-    /// お知らせ
-    /// </summary>
-    public class Notice
+    public class Create
     {
         private string? _noticeId;
         /// <summary>
@@ -15,8 +13,8 @@ namespace Alpaca.Portal.Web.Models
         [Key]
         public string NoticeId
         {
-            get => _noticeId ?? string.Empty; 
-            set => _noticeId = value; 
+            get => _noticeId ?? string.Empty;
+            set => _noticeId = value;
         }
 
         private string? _noticeTitle;
@@ -39,6 +37,17 @@ namespace Alpaca.Portal.Web.Models
         {
             get => _registDate ?? DateTime.MinValue;
             set => _registDate = value;
+        }
+
+        private string? _noticeBody;
+        /// <summary>
+        /// お知らせ本文
+        /// </summary>
+        [DisplayName("お知らせ本文")]
+        public string NoticeBody
+        {
+            get => _noticeBody ?? string.Empty; 
+            set => _noticeBody = value;
         }
     }
 }

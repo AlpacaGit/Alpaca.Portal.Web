@@ -1,21 +1,14 @@
 ﻿@model Alpaca.Portal.Web.ViewModels.Notices.Detail
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "お知らせ詳細";
 }
 
-<h1>Details</h1>
+<h1>@Html.DisplayFor(model => model.Head.NoticeTitle)</h1>
 
 <div>
-    <h4>Notice</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Head.NoticeTitle)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Head.NoticeTitle)
-        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Head.RegistDate)
         </dt>
@@ -23,14 +16,17 @@
             @Html.DisplayFor(model => model.Head.RegistDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Body.NoticeBody)
+            @Html.DisplayNameFor(model => model.NoticeBody)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Body.NoticeBody)
+            @Html.DisplayFor(model => model.NoticeBody)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Head.NoticeId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @if(User.IsInRole("Administrators"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.Head.NoticeId">&nbsp;編集&nbsp;</a>
+    }
+    <a asp-action="Index">&nbsp;一覧に戻る&nbsp;</a>
 </div>

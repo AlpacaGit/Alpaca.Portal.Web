@@ -11,5 +11,6 @@ namespace Alpaca.Portal.Web.Data
         {
         }
         public DbSet<Alpaca.Portal.Web.Models.Notice> Notice { get; set; } = default!;
+        public DbSet<Alpaca.Portal.Web.Models.NoticeDetail> NoticeDetail { get; set; } = default!;
     }
 }

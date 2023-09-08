@@ -1,12 +1,10 @@
-﻿@model Alpaca.Portal.Web.Models.Notice
+﻿@model Alpaca.Portal.Web.ViewModels.Notices.Create
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "お知らせ新規作成";
 }
 
-<h1>Create</h1>
-
-<h4>Notice</h4>
+<h1>お知らせ新規作成</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,11 +15,19 @@
                 <input asp-for="NoticeId" class="form-control" />
                 <span asp-validation-for="NoticeId" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <label asp-for="NoticeTitle" class="control-label"></label>
                 <input asp-for="NoticeTitle" class="form-control" />
                 <span asp-validation-for="NoticeTitle" class="text-danger"></span>
             </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="NoticeBody" class="control-label"></label>
+                <textarea asp-for="NoticeBody" class="form-control" ></textarea>
+                <span asp-validation-for="NoticeBody" class="text-danger"></span>
+            </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

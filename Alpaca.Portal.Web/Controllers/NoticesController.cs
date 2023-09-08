@@ -9,6 +9,7 @@ using Alpaca.Portal.Web.Data;
 using Alpaca.Portal.Web.Models;
 using Alpaca.Portal.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Alpaca.Portal.Web.Controllers
 {
@@ -49,17 +50,17 @@ namespace Alpaca.Portal.Web.Controllers
             }
             viewModel.Head = notice;
 
-            //以下ダミー本文
-            var body = new Models.NoticeDetail();
-            body.NoticeId = notice.NoticeId;
-            body.NoticeBody = "これはダミー本文です。";
+            var noticeDetail 
+                = _context.NoticeDetail.Where(detail =>
+                detail.NoticeId == id).Single();
 
-            viewModel.Body = body;
+            viewModel.NoticeBody = noticeDetail.NoticeBody;
 
             return View(viewModel);
         }
 
         // GET: Notices/Create
+        [Authorize(Roles ="Administrators")]
         public IActionResult Create()
         {
             return View();
@@ -70,12 +71,15 @@ namespace Alpaca.Portal.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NoticeId,NoticeTitle")] Notice notice)
+        public async Task<IActionResult> Create(
+            [Bind("NoticeId,NoticeTitle")] Notice notice, 
+            [Bind("NoticeId,NoticeBody")] NoticeDetail noticeDetail)
         {
             if (ModelState.IsValid)
             {
                 notice.RegistDate = DateTime.Now;
-                _context.Add(notice);
+                _context.Notice.Add(notice);
+                _context.NoticeDetail.Add(noticeDetail);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
