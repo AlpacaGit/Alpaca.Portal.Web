@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Razor構文で作ったカレンダー</h1>
+<hr />
+<table class="calendar">
+    <tr>
+        <th>SUN</th>
+        <th>MON</th>
+        <th>TUE</th>
+        <th>WED</th>
+        <th>THU</th>
+        <th>FRI</th>
+        <th>SAT</th>
+    </tr>
+    <tr class="day">
+        @{
+            //月初日を取る。
+            var monthFirstDateString = DateTime.Now.ToString("yyyy/MM/01");
+            //月初日のDateTimeを得る
+            var monthFirstDate = DateTime.Parse(monthFirstDateString);
+            //月初日の曜日数値を得る。
+            var monthFirstDateDayOfWeek = DateTime.Parse(monthFirstDateString).DayOfWeek;
+            //DayOfWeek 日曜日～ 月初日の前日までの曜日については、空で描画する。
+            for (int i = 0; i < ((int)monthFirstDate.DayOfWeek); i++)
+            {
+                <td></td>
+
+            }
+
+            //月初日～週末までを描画する。
+            for (int i = 0; i < Math.Abs((int)monthFirstDate.DayOfWeek - 7); i++)
+            {
+                monthFirstDate = monthFirstDate.AddDays(i);
+                <td>@(monthFirstDate.Day)</td>
+            }
+        }
+    </tr>
+    @{
+        //残り4週分を描画する。
+        for (int i = 0; i < 4; i++)
+        {
+            <tr class="day">
+                @{
+                    for (int j = 0; j < 7; j++)
+                    {
+                        monthFirstDate = monthFirstDate.AddDays(1);
+                        <td>@(monthFirstDate.Day)</td>
+                    }
+                }
+            </tr>
+        }
+    }
+    
+</table>
+
+
