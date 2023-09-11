@@ -1,4 +1,4 @@
-﻿@model Alpaca.Portal.Web.Models.Notice
+﻿@model Alpaca.Portal.Web.ViewModels.Notices.Edit
 
 @{
     ViewData["Title"] = "Edit";
@@ -17,6 +17,11 @@
                 <label asp-for="NoticeTitle" class="control-label"></label>
                 <input asp-for="NoticeTitle" class="form-control" />
                 <span asp-validation-for="NoticeTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoticeBody" class="control-label"></label>
+                <textarea asp-for="NoticeBody" class="form-control"></textarea>
+                <span asp-validation-for="NoticeBody" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

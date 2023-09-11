@@ -4,7 +4,7 @@ using Alpaca.Portal.Web.Models;
 
 namespace Alpaca.Portal.Web.ViewModels.Notices
 {
-    public class Edit
+    public class Create
     {
         private string? _noticeId;
         /// <summary>
